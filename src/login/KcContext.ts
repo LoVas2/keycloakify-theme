@@ -22,6 +22,17 @@ export type KcContextExtensionPerPage = {
         };
         messageHeader: string;
         profile: UserProfile;
+        passwordPolicies?: {
+            length?: number;
+            digits?: number;
+            lowerCase?: number;
+            upperCase?: number;
+            specialChars?: number;
+            notUsername?: boolean;
+            notEmail?: boolean;
+            blacklist?: string[];
+            hashIterations?: number;
+        };
     };
 };
 

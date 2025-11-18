@@ -58,8 +58,75 @@ const kcContextExtensionPerPage: KcContextExtensionPerPage = {
                 },
                 email: {
                     value: "johndoe@example.com",
-                    name: "",
-                    required: false,
+                    name: "email",
+                    displayName: "Email",
+                    required: true,
+                    readOnly: false,
+                    validators: {
+                        length: undefined,
+                        integer: undefined,
+                        email: undefined,
+                        pattern: undefined,
+                        options: undefined,
+                        multivalued: undefined
+                    },
+                    annotations: {
+                        inputType: undefined,
+                        inputTypeSize: undefined,
+                        inputOptionsFromValidation: undefined,
+                        inputOptionLabels: undefined,
+                        inputOptionLabelsI18nPrefix: undefined,
+                        inputTypeCols: undefined,
+                        inputTypeRows: undefined,
+                        inputTypeMaxlength: undefined,
+                        inputHelperTextBefore: undefined,
+                        inputHelperTextAfter: undefined,
+                        inputTypePlaceholder: undefined,
+                        inputTypePattern: undefined,
+                        inputTypeMinlength: undefined,
+                        inputTypeMax: undefined,
+                        inputTypeMin: undefined,
+                        inputTypeStep: undefined
+                    }
+                },
+                password: {
+                    value: "",
+                    name: "password",
+                    displayName: "Password",
+                    required: true,
+                    readOnly: false,
+                    validators: {
+                        length: undefined,
+                        integer: undefined,
+                        email: undefined,
+                        pattern: undefined,
+                        options: undefined,
+                        multivalued: undefined
+                    },
+                    annotations: {
+                        inputType: undefined,
+                        inputTypeSize: undefined,
+                        inputOptionsFromValidation: undefined,
+                        inputOptionLabels: undefined,
+                        inputOptionLabelsI18nPrefix: undefined,
+                        inputTypeCols: undefined,
+                        inputTypeRows: undefined,
+                        inputTypeMaxlength: undefined,
+                        inputHelperTextBefore: undefined,
+                        inputHelperTextAfter: undefined,
+                        inputTypePlaceholder: undefined,
+                        inputTypePattern: undefined,
+                        inputTypeMinlength: undefined,
+                        inputTypeMax: undefined,
+                        inputTypeMin: undefined,
+                        inputTypeStep: undefined
+                    }
+                },
+                "password-confirm": {
+                    value: "",
+                    name: "password-confirm",
+                    displayName: "Confirm Password",
+                    required: true,
                     readOnly: false,
                     validators: {
                         length: undefined,
