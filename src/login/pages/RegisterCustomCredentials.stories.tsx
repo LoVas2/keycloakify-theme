@@ -4,7 +4,7 @@ import { createKcPageStory } from "../KcPageStory";
 const { KcPageStory } = createKcPageStory({ pageId: "register-custom-credentials.ftl" });
 
 const meta = {
-    title: "login/otp-form.ftl",
+    title: "login/register-custom-credentials.ftl",
     component: KcPageStory
 } satisfies Meta<typeof KcPageStory>;
 

@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-empty-object-type */
 import type { ExtendKcContext } from "keycloakify/login";
 import type { KcEnvName, ThemeName } from "../kc.gen";
+import { UserProfile } from "keycloakify/login/KcContext/KcContext";
 
 export type KcContextExtension = {
     themeName: ThemeName;
@@ -17,7 +18,10 @@ export type KcContextExtensionPerPage = {
         url: {
             loginRestartFlowUrl: string;
             loginAction: string;
+            registrationAction: string;
         };
+        messageHeader: string;
+        profile: UserProfile;
     };
 };
 

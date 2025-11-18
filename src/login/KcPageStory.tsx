@@ -18,7 +18,77 @@ const kcContextExtensionPerPage: KcContextExtensionPerPage = {
         },
         url: {
             loginRestartFlowUrl: "#",
-            loginAction: "#"
+            loginAction: "#",
+            registrationAction: "#",
+        },
+        messageHeader: "Step 1",
+        profile: {
+            attributesByName: {
+                username: {
+                    value: "johndoe",
+                    name: "",
+                    required: false,
+                    readOnly: false,
+                    validators: {
+                        length: undefined,
+                        integer: undefined,
+                        email: undefined,
+                        pattern: undefined,
+                        options: undefined,
+                        multivalued: undefined
+                    },
+                    annotations: {
+                        inputType: undefined,
+                        inputTypeSize: undefined,
+                        inputOptionsFromValidation: undefined,
+                        inputOptionLabels: undefined,
+                        inputOptionLabelsI18nPrefix: undefined,
+                        inputTypeCols: undefined,
+                        inputTypeRows: undefined,
+                        inputTypeMaxlength: undefined,
+                        inputHelperTextBefore: undefined,
+                        inputHelperTextAfter: undefined,
+                        inputTypePlaceholder: undefined,
+                        inputTypePattern: undefined,
+                        inputTypeMinlength: undefined,
+                        inputTypeMax: undefined,
+                        inputTypeMin: undefined,
+                        inputTypeStep: undefined
+                    }
+                },
+                email: {
+                    value: "johndoe@example.com",
+                    name: "",
+                    required: false,
+                    readOnly: false,
+                    validators: {
+                        length: undefined,
+                        integer: undefined,
+                        email: undefined,
+                        pattern: undefined,
+                        options: undefined,
+                        multivalued: undefined
+                    },
+                    annotations: {
+                        inputType: undefined,
+                        inputTypeSize: undefined,
+                        inputOptionsFromValidation: undefined,
+                        inputOptionLabels: undefined,
+                        inputOptionLabelsI18nPrefix: undefined,
+                        inputTypeCols: undefined,
+                        inputTypeRows: undefined,
+                        inputTypeMaxlength: undefined,
+                        inputHelperTextBefore: undefined,
+                        inputHelperTextAfter: undefined,
+                        inputTypePlaceholder: undefined,
+                        inputTypePattern: undefined,
+                        inputTypeMinlength: undefined,
+                        inputTypeMax: undefined,
+                        inputTypeMin: undefined,
+                        inputTypeStep: undefined
+                    }
+                }
+            }
         }
     }
 };
