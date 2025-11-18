@@ -3,7 +3,7 @@ import type { PageProps } from "keycloakify/login/pages/PageProps";
 import type { KcContext } from "../KcContext";
 import type { I18n } from "../i18n";
 import { Fragment, useState } from "react";
-import { useUserProfileForm } from "keycloakify/login/lib/useUserProfileForm";
+import { useUserProfileForm, type FormFieldError } from "../lib/useUserProfileForm";
 
 export default function RegisterCustomCredentials(props: PageProps<Extract<KcContext, { pageId: "register-custom-credentials.ftl" }>, I18n>) {
     const { kcContext, i18n, doUseDefaultCss, Template, classes } = props;
@@ -21,10 +21,25 @@ export default function RegisterCustomCredentials(props: PageProps<Extract<KcCon
         formState: { formFieldStates },
         dispatchFormAction
     } = useUserProfileForm({
-        kcContext,
+        kcContext: {
+            // Force password fields and email-as-username for this step
+            ...kcContext,
+            passwordRequired: true,
+            realm: {
+                ...kcContext.realm,
+                registrationEmailAsUsername: true
+            }
+        },
         i18n,
         doMakeUserConfirmPassword: true
     });
+
+    const fieldsToRender = (() => {
+        const desiredOrder = ["email", "email-confirm", "password", "password-confirm"] as const;
+        return desiredOrder
+            .map(name => formFieldStates.find(({ attribute }) => attribute.name === name))
+            .filter((fieldState): fieldState is NonNullable<typeof fieldState> => fieldState !== undefined);
+    })();
 
     const [isFormSubmittable] = useState(true);
 
@@ -41,7 +56,7 @@ export default function RegisterCustomCredentials(props: PageProps<Extract<KcCon
         >
             <form id="kc-register-form" className={kcClsx("kcFormClass")} action={url.registrationAction} method="post">
 
-                {formFieldStates.map(({ attribute, displayableErrors, valueOrValues }) => (
+                {fieldsToRender.map(({ attribute, displayableErrors, valueOrValues }) => (
                     <Fragment key={attribute.name}>
                         {/* Label */}
                         <div className={kcClsx("kcFormGroupClass")}>
@@ -80,7 +95,7 @@ export default function RegisterCustomCredentials(props: PageProps<Extract<KcCon
                                         id={`input-error-${attribute.name}`}
                                         className={kcClsx("kcInputErrorMessageClass")}
                                     >
-                                        {displayableErrors.map((err, i) => (
+                                        {displayableErrors.map((err: FormFieldError, i: number) => (
                                             <Fragment key={i}>
                                                 {err.errorMessage}
                                                 <br />

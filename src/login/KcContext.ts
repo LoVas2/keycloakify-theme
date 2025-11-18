@@ -15,6 +15,10 @@ export type KcContextExtensionPerPage = {
         auth: {
             attemptedUsername: string;
         };
+        realm: {
+            registrationEmailAsUsername: boolean;
+        };
+        passwordRequired: boolean;
         url: {
             loginRestartFlowUrl: string;
             loginAction: string;

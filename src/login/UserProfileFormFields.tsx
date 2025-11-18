@@ -8,7 +8,7 @@ import {
     getButtonToDisplayForMultivaluedAttributeField,
     type FormAction,
     type FormFieldError
-} from "keycloakify/login/lib/useUserProfileForm";
+} from "./lib/useUserProfileForm";
 import type { UserProfileFormFieldsProps } from "keycloakify/login/UserProfileFormFieldsProps";
 import type { Attribute } from "keycloakify/login/KcContext";
 import type { KcContext } from "./KcContext";

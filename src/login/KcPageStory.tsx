@@ -13,6 +13,10 @@ const kcContextExtension: KcContextExtension = {
 };
 const kcContextExtensionPerPage: KcContextExtensionPerPage = {
     "register-custom-credentials.ftl": {
+        realm: {
+            registrationEmailAsUsername: true
+        },
+        passwordRequired: true,
         auth: {
             attemptedUsername: "user@user.com"
         },
@@ -24,47 +28,15 @@ const kcContextExtensionPerPage: KcContextExtensionPerPage = {
         messageHeader: "Step 1",
         profile: {
             attributesByName: {
-                username: {
-                    value: "johndoe",
-                    name: "",
-                    required: false,
-                    readOnly: false,
-                    validators: {
-                        length: undefined,
-                        integer: undefined,
-                        email: undefined,
-                        pattern: undefined,
-                        options: undefined,
-                        multivalued: undefined
-                    },
-                    annotations: {
-                        inputType: undefined,
-                        inputTypeSize: undefined,
-                        inputOptionsFromValidation: undefined,
-                        inputOptionLabels: undefined,
-                        inputOptionLabelsI18nPrefix: undefined,
-                        inputTypeCols: undefined,
-                        inputTypeRows: undefined,
-                        inputTypeMaxlength: undefined,
-                        inputHelperTextBefore: undefined,
-                        inputHelperTextAfter: undefined,
-                        inputTypePlaceholder: undefined,
-                        inputTypePattern: undefined,
-                        inputTypeMinlength: undefined,
-                        inputTypeMax: undefined,
-                        inputTypeMin: undefined,
-                        inputTypeStep: undefined
-                    }
-                },
                 email: {
                     value: "johndoe@example.com",
-                    name: "",
-                    required: false,
+                    name: "email",
+                    required: true,
                     readOnly: false,
                     validators: {
-                        length: undefined,
+                        length: { min: "3", max: "64" },
                         integer: undefined,
-                        email: undefined,
+                        email: {},
                         pattern: undefined,
                         options: undefined,
                         multivalued: undefined
