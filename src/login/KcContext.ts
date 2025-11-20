@@ -34,6 +34,15 @@ export type KcContextExtensionPerPage = {
             hashIterations?: number;
         };
     };
+    "register-custom-personal-data.ftl": {
+        url: {
+            loginRestartFlowUrl: string;
+            loginAction: string;
+            registrationAction: string;
+        };
+        messageHeader: string;
+        profile: UserProfile;
+    };
 };
 
 export type KcContext = ExtendKcContext<KcContextExtension, KcContextExtensionPerPage>;

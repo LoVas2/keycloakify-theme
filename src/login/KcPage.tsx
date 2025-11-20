@@ -5,6 +5,7 @@ import { useI18n } from "./i18n";
 import DefaultPage from "keycloakify/login/DefaultPage";
 import Template from "keycloakify/login/Template";
 import RegisterCustomCredentials from "./pages/RegisterCustomCredentials";
+import RegisterCustomPersonalData from "./pages/RegisterCustomPersonalData";
 const UserProfileFormFields = lazy(
     () => import("./UserProfileFormFields")
 );
@@ -41,6 +42,13 @@ export default function KcPage(props: { kcContext: KcContext }) {
                     );
                     case "register-custom-credentials.ftl": return (
                         <RegisterCustomCredentials
+                            {...{ kcContext, i18n, classes }}
+                            Template={Template}
+                            doUseDefaultCss={true}
+                        />
+                    );
+                    case "register-custom-personal-data.ftl": return (
+                        <RegisterCustomPersonalData
                             {...{ kcContext, i18n, classes }}
                             Template={Template}
                             doUseDefaultCss={true}

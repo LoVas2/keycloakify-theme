@@ -157,6 +157,84 @@ const kcContextExtensionPerPage: KcContextExtensionPerPage = {
                 }
             }
         }
+    },
+    "register-custom-personal-data.ftl": {
+        url: {
+            loginRestartFlowUrl: "#",
+            loginAction: "#",
+            registrationAction: "#"
+        },
+        messageHeader: "Step 2 - Personal Data",
+        profile: {
+            attributesByName: {
+                civility: {
+                    value: "",
+                    name: "civility",
+                    displayName: "Civility",
+                    required: true,
+                    readOnly: false,
+                    validators: {
+                        options: {
+                            options: ["M", "Mme"]
+                        }
+                    },
+                    annotations: {
+                        inputOptionLabels: {
+                            "M": "Monsieur",
+                            "Mme": "Madame"
+                        }
+                    }
+                },
+                lastName: {
+                    value: "",
+                    name: "lastName",
+                    displayName: "Last Name",
+                    required: true,
+                    readOnly: false,
+                    validators: {
+                        length: {
+                            min: "2",
+                            max: "255"
+                        }
+                    },
+                    annotations: {}
+                },
+                firstName: {
+                    value: "",
+                    name: "firstName",
+                    displayName: "First Name",
+                    required: true,
+                    readOnly: false,
+                    validators: {
+                        length: {
+                            min: "2",
+                            max: "255"
+                        }
+                    },
+                    annotations: {}
+                },
+                profile: {
+                    values: [],
+                    name: "profile",
+                    displayName: "Profile",
+                    required: true,
+                    readOnly: false,
+                    multivalued: true,
+                    validators: {
+                        options: {
+                            options: ["admin", "user", "manager"]
+                        }
+                    },
+                    annotations: {
+                        inputOptionLabels: {
+                            "admin": "Administrateur",
+                            "user": "Utilisateur",
+                            "manager": "Manager"
+                        }
+                    }
+                }
+            }
+        }
     }
 };
 

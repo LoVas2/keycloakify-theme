@@ -2,9 +2,9 @@ import { getKcClsx } from "keycloakify/login/lib/kcClsx";
 import type { PageProps } from "keycloakify/login/pages/PageProps";
 import type { KcContext } from "../KcContext";
 import type { I18n } from "../i18n";
-import { Fragment, useState, useEffect } from "react";
-import { useUserProfileForm, type FormFieldError } from "keycloakify/login/lib/useUserProfileForm";
-import type { Attribute } from "keycloakify/login/KcContext";
+import { useState, useEffect } from "react";
+import { useUserProfileForm } from "keycloakify/login/lib/useUserProfileForm";
+import { FieldErrors, CustomErrorMessage } from "../components/FormComponents";
 
 export default function RegisterCustomCredentials(props: PageProps<Extract<KcContext, { pageId: "register-custom-credentials.ftl" }>, I18n>) {
     const { kcContext, i18n, doUseDefaultCss, Template, classes } = props;
@@ -31,10 +31,10 @@ export default function RegisterCustomCredentials(props: PageProps<Extract<KcCon
     const emailField = formFieldStates.find(field => field.attribute.name === "email");
 
     // États locaux pour la confirmation de l'email
+    const [customEmailError, setCustomEmailError] = useState<string | null>(null);
     const [emailConfirm, setEmailConfirm] = useState("");
     const [emailConfirmError, setEmailConfirmError] = useState<string | null>(null);
     const [emailConfirmTouched, setEmailConfirmTouched] = useState(false);
-    const [customEmailError, setCustomEmailError] = useState<string | null>(null);
     const [emailTouched, setEmailTouched] = useState(false);
 
     // États locaux pour les mots de passe
@@ -180,13 +180,7 @@ export default function RegisterCustomCredentials(props: PageProps<Extract<KcCon
                             <FieldErrors attribute={emailField.attribute} displayableErrors={emailField.displayableErrors} kcClsx={kcClsx} />
                         )}
                         {customEmailError && (
-                            <span
-                                id="input-error-email-custom"
-                                className={kcClsx("kcInputErrorMessageClass")}
-                                aria-live="polite"
-                            >
-                                {customEmailError}
-                            </span>
+                            <CustomErrorMessage id="input-error-email-custom" message={customEmailError} kcClsx={kcClsx} />
                         )}
                     </div>
                 </div>
@@ -210,22 +204,10 @@ export default function RegisterCustomCredentials(props: PageProps<Extract<KcCon
                             aria-invalid={emailConfirmError !== null}
                         />
                         {emailConfirmError && (
-                            <span
-                                id="input-error-email-confirm"
-                                className={kcClsx("kcInputErrorMessageClass")}
-                                aria-live="polite"
-                            >
-                                {emailConfirmError}
-                            </span>
+                            <CustomErrorMessage id="input-error-email-confirm" message={emailConfirmError} kcClsx={kcClsx} />
                         )}
                         {messagesPerField.existsError("email-confirm") && (
-                            <span
-                                id="input-error-email-confirm-server"
-                                className={kcClsx("kcInputErrorMessageClass")}
-                                aria-live="polite"
-                            >
-                                {messagesPerField.get("email-confirm")}
-                            </span>
+                            <CustomErrorMessage id="input-error-email-confirm-server" message={messagesPerField.get("email-confirm")} kcClsx={kcClsx} />
                         )}
                     </div>
                 </div>
@@ -250,13 +232,7 @@ export default function RegisterCustomCredentials(props: PageProps<Extract<KcCon
                             aria-invalid={passwordError !== null}
                         />
                         {passwordError && (
-                            <span
-                                id="input-error-password"
-                                className={kcClsx("kcInputErrorMessageClass")}
-                                aria-live="polite"
-                            >
-                                {passwordError}
-                            </span>
+                            <CustomErrorMessage id="input-error-password" message={passwordError} kcClsx={kcClsx} />
                         )}
                     </div>
                 </div>
@@ -281,13 +257,7 @@ export default function RegisterCustomCredentials(props: PageProps<Extract<KcCon
                             aria-invalid={passwordConfirmError !== null}
                         />
                         {passwordConfirmError && (
-                            <span
-                                id="input-error-password-confirm"
-                                className={kcClsx("kcInputErrorMessageClass")}
-                                aria-live="polite"
-                            >
-                                {passwordConfirmError}
-                            </span>
+                            <CustomErrorMessage id="input-error-password-confirm" message={passwordConfirmError} kcClsx={kcClsx} />
                         )}
                     </div>
                 </div>
@@ -297,7 +267,7 @@ export default function RegisterCustomCredentials(props: PageProps<Extract<KcCon
                     <div id="kc-form-options" className={kcClsx("kcFormOptionsClass")}>
                         <div className={kcClsx("kcFormOptionsWrapperClass")}>
                             <span>
-                                <a href={url.loginUrl}>{msg("backToLogin")}</a>
+                                <a href={url.loginRestartFlowUrl}>{msg("backToLogin")}</a>
                             </span>
                         </div>
                     </div>
@@ -314,28 +284,5 @@ export default function RegisterCustomCredentials(props: PageProps<Extract<KcCon
                 </div>
             </form>
         </Template>
-    );
-}
-
-function FieldErrors(props: { attribute: Attribute; displayableErrors: FormFieldError[]; kcClsx: ReturnType<typeof getKcClsx>["kcClsx"] }) {
-    const { attribute, displayableErrors, kcClsx } = props;
-
-    if (displayableErrors.length === 0) {
-        return null;
-    }
-
-    return (
-        <span
-            id={`input-error-${attribute.name}`}
-            className={kcClsx("kcInputErrorMessageClass")}
-            aria-live="polite"
-        >
-            {displayableErrors.map(({ errorMessage }, i, arr) => (
-                <Fragment key={i}>
-                    {errorMessage}
-                    {arr.length - 1 !== i && <br />}
-                </Fragment>
-            ))}
-        </span>
     );
 }

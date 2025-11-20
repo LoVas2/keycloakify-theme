@@ -8,11 +8,15 @@ const { useI18n, ofTypeI18n } = i18nBuilder
     .withCustomTranslations({
         // WARNING: You can't import the translation from external files
         en: {
-            invalidEmailConfirmMessage: "Email confirmation doesn't match"
+            invalidEmailConfirmMessage: "Email confirmation doesn't match",
+            civility: "Title",
+            profile: "Profile"
         },
         // cspell: disable
         fr: {
-            invalidEmailConfirmMessage: "L'email de confirmation ne correspond pas."
+            invalidEmailConfirmMessage: "L'email de confirmation ne correspond pas.",
+            civility: "Civilité",
+            profile: "Profil"
         }
     })
     .build();
