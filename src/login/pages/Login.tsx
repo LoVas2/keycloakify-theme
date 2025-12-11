@@ -177,6 +177,17 @@ export default function Login(props: PageProps<Extract<KcContext, { pageId: "log
 
                             <div id="kc-form-buttons" className={kcClsx("kcFormGroupClass")}>
                                 <input type="hidden" id="id-hidden-input" name="credentialId" value={auth.selectedCredential} />
+                                <button
+                                    type="button"
+                                    className={kcClsx("kcButtonClass", "kcButtonDefaultClass", "kcButtonBlockClass", "kcButtonLargeClass")}
+                                    style={{ marginBottom: "1rem" }}
+                                    onClick={() => {
+                                        // TODO: Implémenter la logique de connexion par téléphone
+                                        alert("Connexion par téléphone - À implémenter");
+                                    }}
+                                >
+                                    Se connecter par téléphone
+                                </button>
                                 <input
                                     tabIndex={7}
                                     disabled={isLoginButtonDisabled}
